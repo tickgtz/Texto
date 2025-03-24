@@ -12,6 +12,7 @@
       color: #333;
       margin: 0;
       padding: 0;
+      font-size: 16px; /* Tamanho de fonte inicial */
     }
 
     header {
@@ -45,10 +46,6 @@
       background-color: #000;
       color: #fff;
     }
-
-    .large-font {
-      font-size: 20px;
-    }
   </style>
 </head>
 <body>
@@ -57,6 +54,7 @@
     <p>Este é o cabeçalho da página.</p>
     <div class="accessibility-buttons">
       <button id="increaseFontBtn">Aumentar Fonte</button>
+      <button id="decreaseFontBtn">Diminuir Fonte</button>
       <button id="toggleContrastBtn">Alterar Contraste</button>
     </div>
   </header>
@@ -67,11 +65,23 @@
   <script>
     // Seleção dos botões de acessibilidade
     const increaseFontBtn = document.getElementById('increaseFontBtn');
+    const decreaseFontBtn = document.getElementById('decreaseFontBtn');
     const toggleContrastBtn = document.getElementById('toggleContrastBtn');
+
+    let fontSize = 16; // Tamanho de fonte inicial
 
     // Função para aumentar o tamanho da fonte
     increaseFontBtn.addEventListener('click', () => {
-      document.body.classList.toggle('large-font');
+      fontSize += 2; // Aumenta o tamanho da fonte em 2px
+      document.body.style.fontSize = fontSize + 'px';
+    });
+
+    // Função para diminuir o tamanho da fonte
+    decreaseFontBtn.addEventListener('click', () => {
+      if (fontSize > 10) { // Impede que o tamanho da fonte fique muito pequeno
+        fontSize -= 2; // Diminui o tamanho da fonte em 2px
+        document.body.style.fontSize = fontSize + 'px';
+      }
     });
 
     // Função para alternar o contraste da página
